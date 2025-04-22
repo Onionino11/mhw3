@@ -344,7 +344,6 @@ function createHamburger() {
     hideItemsCategoria(); 
     const query = 'hamburger';
     let number = 5;
-    const prodotto=1;
     const panelItems = document.querySelectorAll('#panel-body .panel-item');
     for (const item of panelItems) {
         if (item.dataset.nome === "MALU BURGER (SOLO PANINO)") {
@@ -352,7 +351,7 @@ function createHamburger() {
             break; 
         }
     }
-    const apiKey = 'Key';
+    // const apiKey = 'La mia chiave sta nel file config.js che non publico su github';
 
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=${number}&apiKey=${apiKey}`)
         .then(onSuccess, onError)
