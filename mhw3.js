@@ -351,7 +351,7 @@ function createHamburger() {
             break; 
         }
     }
-    // const apiKey = 'La mia chiave sta nel file config.js che non publico su github';
+    // const apiKey = 'La mia chiave sta nel file config.js che non pubblico su github';
 
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=${number}&apiKey=${apiKey}`)
         .then(onSuccess, onError)
