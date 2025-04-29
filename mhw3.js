@@ -119,9 +119,8 @@ function hideLanguageMenu() {
     const element = document.querySelector('#language-menu');
     element.classList.add('hidden');
     console.log('Menu lingua nascosto da blur');
-    
-
 }
+
 languageSelector.addEventListener('click',  displayLanguageMenu);
 languageSelector.addEventListener('blur', hideLanguageMenu);
 
@@ -173,27 +172,25 @@ function cambiaLingua(event) {
 
 
 
+
+
+
+
+
 const navCampanella = document.querySelector('#nav-campanella');
 function displayletterbox() {
     const element = document.querySelector('#letterbox');
-    if (element) {
-        if (element.classList.contains('hidden')) {
-            element.classList.remove('hidden');
-        } else {
-            element.classList.add('hidden');
-        }
+    if (element.classList.contains('hidden')) {
+        element.classList.remove('hidden');
     } else {
-        console.error(`Elemento con selettore "${selector}" non trovato.`);
+        element.classList.add('hidden');
     }
 }
 
 function hideletterbox() {
     const element = document.querySelector('#letterbox');
-    if (element) {
-        element.classList.add('hidden');
-    } else {
-        console.error(`Elemento con selettore "${selector}" non trovato.`);
-    }
+    element.classList.add('hidden');
+   
 }
 navCampanella.addEventListener('click', displayletterbox);
 navCampanella.addEventListener('blur',  hideletterbox);
@@ -353,7 +350,7 @@ function createHamburger() {
     }
     // const apiKey = 'La mia chiave sta nel file config.js che non pubblico su github';
 
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=${number}&apiKey=${apiKey}`)
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query=' + query + '&number=' + number + '&apiKey=' + apiKey)
         .then(onSuccess, onError)
         .then(onJsonItems);
 }
@@ -405,8 +402,14 @@ function getRandomFloat(min, max) {
     return ((Math.random() * (max - min) + min).toFixed(1)+'0');
 }
 
+
+
+
+
+
+
 function orariGiornalieri() {
-    fetch(`https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="fast_food"]["name"="Maluburger"];out;`)
+    fetch('https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="fast_food"]["name"="Maluburger"];out;')
         .then(onSuccess, onError)
         .then(onJsonOrariGiornalieri);
 }
@@ -423,9 +426,9 @@ function onJsonOrariGiornalieri(data) {
 
         console.log('Orari di apertura:', openingHours);
 
-        // Ottieni il giorno corrente
+    
         const giorniSettimana = [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-        const oggi = new Date().getDay(); // 0 = Domenica, 1 = Lunedì, ..., 6 = Sabato
+        const oggi = new Date().getDay();
         const giornoCorrente = giorniSettimana[oggi]; 
         const orariArray= parseOpeningHours(openingHours);
         console.log(orariArray);

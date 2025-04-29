@@ -427,7 +427,7 @@ img {
     color: black;
 }
 .lingua:hover{
-    background-color: rgb(51, 0, 0);
+    background-color: rgb(82, 17, 17);
     color: white;
 }
 .lingua.linguaattuale{
@@ -649,6 +649,7 @@ img {
     border-radius: 3px;
     font-size: 16px;
     cursor: pointer;
+    padding: 4px 7px;
 }
 
 .cart-item-quantity {
@@ -682,6 +683,7 @@ img {
     font-weight: bold;
     font-size: 14px;
     color: #333;
+    padding: 5px;
 }
 
 #ConcludiOrdine {
@@ -698,6 +700,7 @@ img {
 }
 #ConcludiOrdine:hover{
     background-color:rgb(197, 105, 0);
+    cursor: pointer;
 }
 
 .footer-column {
