@@ -317,6 +317,24 @@ function createItem(elemento) {
     if (elemento.nome === "MALU BURGER (SOLO PANINO)") {
         itemButton.addEventListener('click', createHamburger); 
     }
+    else if (elemento.nome === "PER INIZIARE") {
+        itemButton.addEventListener('click', createFried); 
+    }
+    else if (elemento.nome === "MALU PROMO MENU'") {
+        itemButton.addEventListener('click', createPlate); 
+    }
+    else if (elemento.nome === "MALU LIGHT") {
+        itemButton.addEventListener('click', createSalad); 
+    }
+    else if (elemento.nome === "DA BERE") {
+        itemButton.addEventListener('click', createDrink); 
+    }
+    else if (elemento.nome === "DOLCI") {
+        itemButton.addEventListener('click', createDessert); 
+    }
+    
+    
+    
     else if(elemento.prezzo>0){
         // itemButton.addEventListener('click', addtoCart); 
     }
@@ -333,23 +351,50 @@ for (const elemento of data.categorie) {
     panelBody.appendChild(panelItem);
 }
 
-
-
-
-
-function createHamburger() {
-    hideItemsCategoria(); 
-    const query = 'hamburger';
-    let number = 5;
+function getNumberof(product){
+    let number = 0;
     const panelItems = document.querySelectorAll('#panel-body .panel-item');
     for (const item of panelItems) {
-        if (item.dataset.nome === "MALU BURGER (SOLO PANINO)") {
+        if (item.dataset.nome === product) {
             number = item.dataset.nProdotti;
             break; 
         }
     }
-    // const apiKey = 'La mia chiave sta nel file config.js che non pubblico su github';
+    return number;
+}
 
+function createFried(){
+    number = getNumberof('PER INIZIARE');
+    createCibo('snac', number);
+}
+
+function createHamburger(){ 
+
+    number = getNumberof('MALU BURGER (SOLO PANINO)');
+    createCibo('hamburger', number);
+}
+
+function createPlate(){
+    number = getNumberof('MALU PROMO MENU\'');
+    createCibo('pasta', number);
+}
+function createSalad(){
+    number = getNumberof('MALU LIGHT');
+    createCibo('salad', number);
+}
+function createDrink(){
+    number = getNumberof('DA BERE');
+    createCibo('drink', number);
+}
+function createDessert(){
+    number = getNumberof('DOLCI');
+    createCibo('dessert',number);
+}
+
+function createCibo(query,number) {
+    hideItemsCategoria(); 
+    
+    // const apiKey = 'La mia chiave sta nel file config.js che non pubblico su github';
     fetch('https://api.spoonacular.com/recipes/complexSearch?query=' + query + '&number=' + number + '&apiKey=' + apiKey)
         .then(onSuccess, onError)
         .then(onJsonItems);
