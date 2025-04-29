@@ -391,7 +391,6 @@ function hideItemsCategoria() {
     console.log('hideItemsCategoria');
     const panelItems = document.querySelectorAll('#panel-body .panel-item');
     for (const item of panelItems) {
-        console.log(item.dataset.nome);
         if (item.dataset.prodotto == 0) {
             item.classList.add('hidden');
         }
@@ -457,31 +456,29 @@ function parseOpeningHours(openingHours) {
     const giorniSettimana = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     const result = [];
 
-
     const orari = openingHours.split(';');
 
     for (const orario of orari) {
         const [giorni, ore] = orario.trim().split(' ');
 
-  
         const giorniEspansi = [];
         if (giorni.includes('-')) {
             const [inizio, fine] = giorni.split('-');
             const startIndex = giorniSettimana.indexOf(inizio);
             const endIndex = giorniSettimana.indexOf(fine);
 
-            for (let i = startIndex; i <= endIndex; i++) {
-                giorniEspansi.push(giorniSettimana[i]);
+            for (let i = startIndex, j = 0; i <= endIndex; i++, j++) {
+                giorniEspansi[j] = giorniSettimana[i]; 
             }
         } else {
-            for (const giorno of giorni.split(',')) {
-                giorniEspansi.push(giorno);
+            const giorniSplit = giorni.split(',');
+            for (let i = 0; i < giorniSplit.length; i++) {
+                giorniEspansi[i] = giorniSplit[i]; 
             }
         }
 
-
-        for (const giorno of giorniEspansi) {
-            result.push({ giorno, orario: ore });
+        for (let i = 0; i < giorniEspansi.length; i++) {
+            result[result.length] = { giorno: giorniEspansi[i], orario: ore }; 
         }
     }
 
